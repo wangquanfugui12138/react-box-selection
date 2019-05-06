@@ -1,0 +1,44 @@
+{
+    "name": "react-box-selection",
+    "version": "1.0.4",
+    "main": "dist/index.js",
+    "author": "Zenyk",
+    "license": "MIT",
+    "description": "React component for making box selections on elements",
+    "keywords": [
+        "react",
+        "mouse",
+        "box",
+        "select",
+        "selection",
+        "component"
+    ],
+    "scripts": {
+        "build": "webpack --progress",
+        "watch": "webpack --watch --progress"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/wangquanfugui12138/react-box-selection"
+    },
+    "bugs": {
+        "url": "https://github.com/wangquanfugui12138/react-box-selection/issues"
+    },
+    "dependencies": {
+        "prop-types": "15.6.0",
+        "react": "16.2.0"
+    },
+    "devDependencies": {
+        "@babel/core": "7.2.2",
+        "@babel/plugin-proposal-class-properties": "^7.4.4",
+        "@babel/preset-env": "7.2.3",
+        "@babel/preset-react": "7.0.0",
+        "babel-loader": "8.0.5",
+        "clean-webpack-plugin": "^0.1.19",
+        "css-loader": "^0.28.11",
+        "style-loader": "^0.20.3",
+        "webpack": "^4.2.0",
+        "webpack-cli": "^3.1.1"
+    },
+    "prepublishOnly": "npm run build"
+}
