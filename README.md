@@ -38,6 +38,9 @@ class App extends React.Component {
   hovered = (position, item) => {
     console.log(position)
   }
+  leaved = (position, item) => {
+    console.log(position)
+  }
 
   render () {
 
@@ -52,6 +55,7 @@ class App extends React.Component {
           positions={[]} 
           onMounted={this.mounted}
           onHovered={this.hovered}
+          onLeaved={this.leaved}
           onSelected={this.selected}
           onSingleSelected={this.singleSelected}
           itemClass='selection_item'
@@ -76,7 +80,8 @@ class App extends React.Component {
 | gap | 0 | × | item's spacing |
 | positions | [] | × | target items |
 | onMounted | - | × | mounted callback |
-| onHovered | - | × | hovered callback |
+| onHovered | - | × | overed callback |
+| onLeaved | - | × | leaved callback |
 | onSelected | - | × | selected callback |
 | onSingleSelected | - | × | select or click on a single callback |
 | itemClass | selection_item | × | items' class |
