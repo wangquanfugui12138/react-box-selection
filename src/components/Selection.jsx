@@ -29,6 +29,7 @@ class Selection extends React.Component {
     positions: PropTypes.array,
     onMounted: PropTypes.func,
     onHovered: PropTypes.func,
+    onLeaved: PropTypes.func,
     onSelected: PropTypes.func,
     onSingleSelected: PropTypes.func,
   }
@@ -158,9 +159,11 @@ class Selection extends React.Component {
   leave = e => {
     clearEventBubble(e)
     const { isMouseDown } = this.state
-    const { activeClass } = this.props
+    const { onLeaved, activeClass } = this.props
+    let target = e.target
 
-    !isMouseDown && e.target.classList.remove(activeClass || 'selection_item_active')
+    !isMouseDown && target.classList.remove(activeClass || 'selection_item_active')
+    onLeaved && onLeaved(target.dataset['position'], target)
   }
 
   render () {

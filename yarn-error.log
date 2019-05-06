@@ -1,0 +1,79 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js publish
+
+PATH: 
+  D:\Xshell\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\Program Files\nodejs\;D:\Git\cmd;D:\mongodb\bin;C:\Users\Administrator\AppData\Roaming\npm;D:\VScode\Microsoft VS Code\bin;D:\Git\usr\bin\ssh-keygen.exe;C:\Program Files\MongoDB\Server\3.6\bin;D:\flutter\bin;D:\Androd\gradle\gradle-4.6\bin;$PATH:$ANDROID_HOME/platform-tools;D:\flutter\flutter\bin
+
+Yarn version: 
+  1.12.3
+
+Node version: 
+  8.12.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: canceled
+      at Interface.<anonymous> (C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:125278:13)
+      at emitNone (events.js:106:13)
+      at Interface.emit (events.js:208:7)
+      at Interface._ttyWrite (readline.js:774:16)
+      at ReadStream.onkeypress (readline.js:158:10)
+      at emitTwo (events.js:126:13)
+      at ReadStream.emit (events.js:214:7)
+      at emitKeys (internal/readline.js:420:14)
+      at emitKeys.next (<anonymous>)
+      at ReadStream.onData (readline.js:1010:36)
+
+npm manifest: 
+  {
+      "name": "react-box-selection",
+      "version": "1.0.5",
+      "main": "dist/index.js",
+      "author": "Zenyk",
+      "license": "MIT",
+      "description": "React component for making box selections on elements",
+      "keywords": [
+          "react",
+          "mouse",
+          "box",
+          "select",
+          "selection",
+          "component"
+      ],
+      "scripts": {
+          "build": "webpack --progress",
+          "watch": "webpack --watch --progress"
+      },
+      "repository": {
+          "type": "git",
+          "url": "https://github.com/wangquanfugui12138/react-box-selection"
+      },
+      "bugs": {
+          "url": "https://github.com/wangquanfugui12138/react-box-selection/issues"
+      },
+      "dependencies": {
+          "prop-types": "15.6.0",
+          "react": "16.2.0"
+      },
+      "devDependencies": {
+          "@babel/core": "7.2.2",
+          "@babel/plugin-proposal-class-properties": "^7.4.4",
+          "@babel/preset-env": "7.2.3",
+          "@babel/preset-react": "7.0.0",
+          "babel-loader": "8.0.5",
+          "clean-webpack-plugin": "^0.1.19",
+          "css-loader": "^0.28.11",
+          "style-loader": "^0.20.3",
+          "webpack": "^4.2.0",
+          "webpack-cli": "^3.1.1"
+      },
+      "prepublishOnly": "npm run build"
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
