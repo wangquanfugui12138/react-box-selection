@@ -11,7 +11,7 @@ React component for making box selections on elements.
 
 #### Installation
 ```bash
-npm install / yarn 
+npm install || yarn 
 ```
 
 #### Usage
@@ -26,13 +26,13 @@ class App extends React.Component {
     this.setState = () => { }
   }
 
-  mounted = allItems => {
-    console.log(allItems)
+  mounted = all => { //all items(dom)
+    console.log(all)
   }
-  selected = (positions, items, all) => {
+  selected = (positions, items, all) => { //data-position(array of string),selected items(array of dom)
     console.log(positions)
   }
-  singleSelected = (position, item, all) => {
+  singleSelected = (position, item, all) => { //data-position(string),selected items(dom)
     console.log(position)
   }
   hovered = (position, item) => {
