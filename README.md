@@ -5,9 +5,9 @@ React component for making box selections on elements.
 
 ### Gif
 
-![](https://github.com/wangquanfugui12138/react-box-selection/master/assets/gap.gif)
+![](https://github.com/wangquanfugui12138/react-box-selection/blob/master/assets/gap.gif)
 
-![](https://github.com/wangquanfugui12138/react-box-selection/master/assets/no_gap.gif)
+![](https://github.com/wangquanfugui12138/react-box-selection/blob/master/assets/no_gap.gif)
 
 #### Installation
 ```bash
