@@ -197,7 +197,7 @@ class Selection extends React.Component {
                   <tr key={`row-${row}`}>
                     {
                       rows.map(function (col) {
-                        const className = `${itemClass || 'selection_item'} ${extraClass.join(' ')} ${selectedPostions.filter(position => position === `${row}-${col}`).length ? activeClass || 'selection_item_active' : ''}`
+                        const className = `${itemClass || 'selection_item'} ${extraClass ? extraClass.join(' ') : ''} ${selectedPostions.filter(position => position === `${row}-${col}`).length ? activeClass || 'selection_item_active' : ''}`
 
                         return (
                           <td
