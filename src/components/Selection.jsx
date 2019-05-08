@@ -2,19 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import './Selection.css'
-import { getTop, getLeft, clearEventBubble, scroll } from '../utils/utils'
-
-const isInPath = (target, wrapper) => {
-  const iOffLeft = target.offsetLeft
-  const iOffTop = target.offsetTop
-  const iLeft = target.offsetWidth + iOffLeft
-  const iTop = target.offsetHeight + iOffTop
-
-  if (iLeft > wrapper.left && iTop > wrapper.top && iOffLeft < (wrapper.left + wrapper.width) && iOffTop < (wrapper.top + wrapper.height)) {
-    return true
-  }
-  return false
-}
+import { getTop, getLeft, clearEventBubble, scroll, isInPath, getParents } from '../utils/utils'
 
 class Selection extends React.Component {
   static propTypes = {
@@ -26,7 +14,6 @@ class Selection extends React.Component {
     itemClass: PropTypes.string,
     extraClass: PropTypes.array,
     activeClass: PropTypes.string,
-    positions: PropTypes.array,
     onMounted: PropTypes.func,
     onHovered: PropTypes.func,
     onLeaved: PropTypes.func,
@@ -42,11 +29,11 @@ class Selection extends React.Component {
       width: props.width || 30,
       height: props.height || 50,
       margin: props.gap || 0,
-      selectedPostions: props.positions || [],
       isMouseDown: false,
-      templates: Array(props.rows || 7).fill([...Array(props.cols || 24).keys()]),
+      templates: [...Array(props.rows || 7)].map(item => [...Array(props.cols || 24).keys()]),
       allItems: [],
       selectedItems: [],
+      selectedPostions: [],
       selectEle: {
         width: 0,
         height: 0,
@@ -56,6 +43,18 @@ class Selection extends React.Component {
       }
     }
 
+  }
+
+  addActiveClass = target => {
+    const { activeClass } = this.props
+
+    target.classList.add(activeClass || 'selection_item_active')
+  }
+
+  removeActiveClass = target => {
+    const { activeClass } = this.props
+
+    target.classList.remove(activeClass || 'selection_item_active')
   }
 
   componentDidMount () {
@@ -68,7 +67,6 @@ class Selection extends React.Component {
   }
 
   componentWillUnmount () {
-    this.table = null
     this.setState({ allItems: null, selectedItems: null })
     this.setState = () => { }
   }
@@ -93,7 +91,6 @@ class Selection extends React.Component {
   move = e => {
     clearEventBubble(e)
     const { isMouseDown, selectEle, startX, startY, selectedItems, selectedPostions } = this.state
-
     if (!isMouseDown) return
 
     const top = getTop(e.currentTarget)
@@ -110,24 +107,29 @@ class Selection extends React.Component {
     selectEle.height = Math.abs(_y - startY)
     selectEle.display = 'block'
 
-    const items = e.currentTarget.getElementsByTagName('td')
+    const items = [...e.currentTarget.getElementsByTagName('td')]
     selectedPostions.length = 0
     selectedItems.length = 0
 
-    for (let i = 0; i < items.length; i++) {
-      if (isInPath(items[i], selectEle)) {
-        selectedPostions.push(items[i].dataset['position'])
-        selectedItems.push(items[i])
+    items.forEach(item => {
+      this.removeActiveClass(item)
+
+      if (isInPath(item, selectEle)) {
+        this.addActiveClass(item)
+
+        selectedPostions.push(item.dataset['position'])
+        selectedItems.push(item)
       }
-    }
+    })
 
     this.setState({ selectEle, selectedItems, selectedPostions })
+
   }
   up = e => {
     clearEventBubble(e)
     const { allItems, selectEle, selectedPostions, selectedItems } = this.state
     const { onSelected, onSingleSelected } = this.props
-    let target = e.target
+    const target = e.target.tagName === 'TD' ? e.target : getParents(e.target, 'TD')
 
     selectEle.left = 0
     selectEle.top = 0
@@ -135,10 +137,14 @@ class Selection extends React.Component {
     selectEle.height = 0
     selectEle.display = 'none'
 
+    allItems.forEach(item => {
+      this.removeActiveClass(item)
+    })
 
     if (selectedPostions.length === 0) {
-      onSingleSelected && e.target.dataset['position'] && onSingleSelected(target.dataset['position'], target, allItems)
+      onSingleSelected && onSingleSelected(target.dataset['position'], target, allItems)
     } else if (selectedPostions.length === 1) {
+
       onSingleSelected && onSingleSelected(selectedPostions[0], selectedItems, allItems)
     } else {
       onSelected && onSelected(selectedPostions, selectedItems, allItems)
@@ -149,26 +155,25 @@ class Selection extends React.Component {
 
   over = e => {
     clearEventBubble(e)
-    const { onHovered, activeClass } = this.props
-    let target = e.target
+    const { onHovered } = this.props
+    const target = e.target.tagName === 'TD' ? e.target : getParents(e.target, 'TD')
 
-    e.target.classList.add(activeClass || 'selection_item_active')
+    this.addActiveClass(target)
     onHovered && onHovered(target.dataset['position'], target)
-    target = null
   }
   leave = e => {
     clearEventBubble(e)
     const { isMouseDown } = this.state
-    const { onLeaved, activeClass } = this.props
-    let target = e.target
+    const { onLeaved } = this.props
+    const target = e.target.tagName === 'TD' ? e.target : getParents(e.target, 'TD')
 
-    !isMouseDown && target.classList.remove(activeClass || 'selection_item_active')
+    !isMouseDown && this.removeActiveClass(target)
     onLeaved && onLeaved(target.dataset['position'], target)
   }
 
   render () {
-    const { templates, selectEle, selectedPostions, width, height, cols, rows, margin } = this.state
-    const { itemClass, extraClass, activeClass } = this.props
+    const { templates, selectEle, width, height, cols, rows, margin } = this.state
+    const { children, itemClass, extraClass } = this.props
     const self = this
 
     return (
@@ -197,7 +202,7 @@ class Selection extends React.Component {
                   <tr key={`row-${row}`}>
                     {
                       rows.map(function (col) {
-                        const className = `${itemClass || 'selection_item'} ${extraClass ? extraClass.join(' ') : ''} ${selectedPostions.filter(position => position === `${row}-${col}`).length ? activeClass || 'selection_item_active' : ''}`
+                        const className = `${itemClass || 'selection_item'} ${extraClass ? extraClass.join(' ') : ''}`
 
                         return (
                           <td
@@ -208,7 +213,11 @@ class Selection extends React.Component {
                             style={{ width, height, margin: `${margin}px ${margin}px 0 ${margin}px` }}
                             key={`col-${col}`}
                             data-position={`${row}-${col}`}
-                          />
+                          >
+                            {
+                              (children && children[row]) ? children[row][col] || '' : ''
+                            }
+                          </td>
                         )
                       })
                     }

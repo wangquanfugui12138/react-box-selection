@@ -5,9 +5,11 @@ React component for making box selections on elements.
 
 ### Gif
 
-![](https://github.com/wangquanfugui12138/react-box-selection/blob/master/assets/gap.gif)
+![](https://github.com/wangquanfugui12138/react-box-selection/raw/master/assets/gap.gif)
 
-![](https://github.com/wangquanfugui12138/react-box-selection/blob/master/assets/no_gap.gif)
+![](https://github.com/wangquanfugui12138/react-box-selection/raw/master/assets/no_gap.gif)
+
+![](https://github.com/wangquanfugui12138/react-box-selection/raw/master/assets/content.gif)
 
 #### Installation
 ```bash
@@ -18,6 +20,14 @@ npm install || yarn
 
 ```javascript
 import Selection from 'react-box-selection'
+
+const content = [...Array(7)].map((item, row) => {
+  return [...Array(14)].map((item, col) => {
+    const data = Math.floor(Math.random() * 100 + 1)
+    const tmp = <h3 key={`${row}-${col}`}>{data}</h3>
+    return tmp
+  })
+})
 
 class App extends React.Component {
   state = {}
@@ -52,7 +62,6 @@ class App extends React.Component {
           width={30} 
           height={50} 
           gap={10} 
-          positions={[]} 
           onMounted={this.mounted}
           onHovered={this.hovered}
           onLeaved={this.leaved}
@@ -61,7 +70,9 @@ class App extends React.Component {
           itemClass='selection_item'
           extraClass={['extra_1', 'extra_2']}
           activeClass='selection_item_active'
-        />
+        >
+          {content}
+        </Selection>
       </div>
     )
   }
@@ -78,7 +89,7 @@ class App extends React.Component {
 | height | 50px | × | item's height |
 | width | 30px | × | item's width |
 | gap | 0 | × | item's spacing |
-| positions | [] | × | target items |
+| Children | - | × | item's dom or text |
 | onMounted | - | × | mounted callback |
 | onHovered | - | × | overed callback |
 | onLeaved | - | × | leaved callback |
