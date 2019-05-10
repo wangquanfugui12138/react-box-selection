@@ -62,6 +62,7 @@ class App extends React.Component {
           width={30} 
           height={50} 
           gap={10} 
+          wrapperScroll={undefined}
           onMounted={this.mounted}
           onHovered={this.hovered}
           onLeaved={this.leaved}
@@ -89,6 +90,7 @@ class App extends React.Component {
 | height | 50px | × | item's height |
 | width | 30px | × | item's width |
 | gap | 0 | × | item's spacing |
+| wrapperScroll | - | × | outer dom scrollTop & scrollLeft |
 | Children | - | × | item's dom or text |
 | onMounted | - | × | mounted callback |
 | onHovered | - | × | overed callback |

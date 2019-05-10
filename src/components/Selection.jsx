@@ -11,6 +11,7 @@ class Selection extends React.Component {
     width: PropTypes.number,
     height: PropTypes.number,
     gap: PropTypes.number,
+    wrapperScroll: PropTypes.object,
     itemClass: PropTypes.string,
     extraClass: PropTypes.array,
     activeClass: PropTypes.string,
@@ -74,11 +75,13 @@ class Selection extends React.Component {
   down = e => {
     clearEventBubble(e)
     const { selectEle } = this.state
+    const { wrapperScroll } = this.props
+
     const { clientX, clientY } = e
 
     const top = getTop(e.currentTarget)
     const left = getLeft(e.currentTarget)
-    const { scrollTop, scrollLeft } = scroll()
+    const { scrollTop, scrollLeft } = wrapperScroll || scroll()
 
     const startX = clientX - left + scrollLeft
     const startY = clientY - top + scrollTop
@@ -91,11 +94,13 @@ class Selection extends React.Component {
   move = e => {
     clearEventBubble(e)
     const { isMouseDown, selectEle, startX, startY, selectedItems, selectedPostions } = this.state
+    const { wrapperScroll } = this.props
+
     if (!isMouseDown) return
 
     const top = getTop(e.currentTarget)
     const left = getLeft(e.currentTarget)
-    const { scrollTop, scrollLeft } = scroll()
+    const { scrollTop, scrollLeft } = wrapperScroll || scroll()
 
     const { clientX, clientY } = e
     const _x = clientX - left + scrollLeft
