@@ -43,7 +43,7 @@ class Selection extends React.Component {
         display: 'none'
       }
     }
-
+    this.selectionTable = null
   }
 
   addActiveClass = target => {
@@ -60,7 +60,8 @@ class Selection extends React.Component {
 
   componentDidMount () {
     const { onMounted } = this.props
-    const table = document.getElementById('selection_table')
+    const table = this.selectionTable
+
     const allItems = [...table.getElementsByTagName('td')]
 
     onMounted && onMounted(allItems)
@@ -198,7 +199,7 @@ class Selection extends React.Component {
           border="1"
           cellSpacing="0"
           cellPadding="0"
-          id='selection_table'
+          ref={ele => this.selectionTable = ele}
         >
           <tbody>
             {

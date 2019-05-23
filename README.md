@@ -90,7 +90,7 @@ class App extends React.Component {
 | height | 50px | × | item's height |
 | width | 30px | × | item's width |
 | gap | 0 | × | item's spacing |
-| wrapperScroll | - | × | outer dom scrollTop & scrollLeft |
+| wrapperScroll | window scrollTop & scrollLeft | × | outer dom scrollTop & scrollLeft |
 | Children | - | × | item's dom or text |
 | onMounted | - | × | mounted callback |
 | onHovered | - | × | overed callback |
