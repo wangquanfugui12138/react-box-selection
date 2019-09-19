@@ -11,9 +11,13 @@ React component for making box selections on elements.
 
 ![](https://github.com/wangquanfugui12138/react-box-selection/raw/master/assets/content.gif)
 
+### Example
+
+[react/antd/react-box-selection demo](https://github.com/wangquanfugui12138/react-box-selection/tree/master/example)
+
 #### Installation
 ```bash
-npm install || yarn 
+npm install react-box-selection || yarn react-box-selection 
 ```
 
 #### Usage
