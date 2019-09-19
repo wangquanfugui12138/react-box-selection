@@ -107,8 +107,8 @@ class Selection extends React.Component {
     const _x = clientX - left + scrollLeft
     const _y = clientY - top + scrollTop
 
-    selectEle.left = Math.min(_x, startX)
-    selectEle.top = Math.min(_y, startY)
+    selectEle.left = _x > startX ? startX - 1 : _x + 1
+    selectEle.top = _y > startY ? startY - 1 : _y + 1
     selectEle.width = Math.abs(_x - startX)
     selectEle.height = Math.abs(_y - startY)
     selectEle.display = 'block'

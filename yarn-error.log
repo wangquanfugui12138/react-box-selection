@@ -2,34 +2,34 @@ Arguments:
   C:\Program Files\nodejs\node.exe C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js publish
 
 PATH: 
-  D:\Xshell\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\Program Files\nodejs\;D:\Git\cmd;D:\mongodb\bin;C:\Users\Administrator\AppData\Roaming\npm;D:\VScode\Microsoft VS Code\bin;D:\Git\usr\bin\ssh-keygen.exe;C:\Program Files\MongoDB\Server\3.6\bin;D:\flutter\bin;D:\Androd\gradle\gradle-4.6\bin;$PATH:$ANDROID_HOME/platform-tools;D:\flutter\flutter\bin
+  D:\Xshell\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;D:\Git\cmd;D:\mongodb\bin;C:\Program Files\nodejs\;D:\VScode\Microsoft VS Code\bin;D:\Git\usr\bin\ssh-keygen.exe;C:\Program Files\MongoDB\Server\3.6\bin;D:\flutter\bin;D:\Androd\gradle\gradle-4.6\bin;$PATH:$ANDROID_HOME/platform-tools;D:\flutter\flutter\bin;C:\Users\Administrator\AppData\Roaming\npm
 
 Yarn version: 
-  1.12.3
+  1.17.3
 
 Node version: 
-  8.12.0
+  10.16.0
 
 Platform: 
   win32 x64
 
 Trace: 
-  Error: canceled
-      at Interface.<anonymous> (C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:125278:13)
-      at emitNone (events.js:106:13)
-      at Interface.emit (events.js:208:7)
-      at Interface._ttyWrite (readline.js:774:16)
-      at ReadStream.onkeypress (readline.js:158:10)
-      at emitTwo (events.js:126:13)
-      at ReadStream.emit (events.js:214:7)
-      at emitKeys (internal/readline.js:420:14)
-      at emitKeys.next (<anonymous>)
-      at ReadStream.onData (readline.js:1010:36)
+  Error: https://registry.npm.taobao.org/-/user/org.couchdb.user:zenyk: [conflict] User zenyk already exists
+      at Request.params.callback [as _callback] (C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66830:18)
+      at Request.self.callback (C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140464:22)
+      at Request.emit (events.js:198:13)
+      at Request.<anonymous> (C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141436:10)
+      at Request.emit (events.js:198:13)
+      at IncomingMessage.<anonymous> (C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141358:12)
+      at Object.onceWrapper (events.js:286:20)
+      at IncomingMessage.emit (events.js:203:15)
+      at endReadableNT (_stream_readable.js:1129:12)
+      at process._tickCallback (internal/process/next_tick.js:63:19)
 
 npm manifest: 
   {
       "name": "react-box-selection",
-      "version": "1.0.5",
+      "version": "1.0.11",
       "main": "dist/index.js",
       "author": "Zenyk",
       "license": "MIT",
